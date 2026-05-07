@@ -1,4 +1,4 @@
-django-admin startproject blog_main .
+    django-admin startproject blog_main .
 python manage.py startserver
 python manage.py migrate
 python manage.py createsuperuser
