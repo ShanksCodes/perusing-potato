@@ -3,6 +3,8 @@
 
 {% block content %}
 
+{% load custom_filters %}
+
 <div class="row">
     <!-- Left sidebar -->
     <!-- load the sidebar here -->
@@ -11,7 +13,9 @@
     <!-- Right side content -->
     <div class="col-md-9">
         <h2>All Posts</h2>
+        {% if request.user.is_superuser or request.user|has_group:"Editor" %}
         <a href="{% url 'add_post' %}" class="btn btn-dark text-light float-right mb-2">Add New</a>
+        {% endif %}
         <table class="table table-hover">
             <thead>
               <tr>

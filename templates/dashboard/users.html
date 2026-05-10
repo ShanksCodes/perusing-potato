@@ -3,6 +3,8 @@
 
 {% block content %}
 
+{% load custom_filters %}
+
 <div class="row">
     <!-- Left sidebar -->
     <!-- load the sidebar here -->
@@ -12,7 +14,9 @@
     <div class="col-md-9">
       {% if perms.auth.view_user %}
         <h2>All Users</h2>
+        {% if request.user.is_superuser or request.user|has_group:"Manager" %}
         <a href="{% url 'add_user' %}" class="btn btn-dark text-light float-right mb-2">Add User</a>
+        {% endif %}
         <table class="table table-hover">
             <thead>
               <tr>

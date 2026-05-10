@@ -1,32 +1,52 @@
 {% extends 'base.html' %}
 
-{% block content %}
 {% load crispy_forms_tags %}
+{% load socialaccount %}
 
-<h3 class="text-center">Login</h3>
+{% block content %}
 
-<form action="{% url 'login' %}" method="POST" style="width:500px; margin:auto;">
+<div class="container mt-5">
 
-    {% csrf_token %}
+    <div class="card shadow p-4 mx-auto" style="max-width:500px;">
 
-    {{ form | crispy }}
+        <h3 class="text-center mb-4">
+            Login
+        </h3>
 
-    <button type="submit" class="btn btn-warning w-100">
-        Login
-    </button>
+        <form action="{% url 'login' %}" method="POST">
 
-</form>
+            {% csrf_token %}
 
-<div style="width:500px; margin:auto; text-align:center; margin-top:20px;">
+            {{ form|crispy }}
 
-    <p>OR</p>
+            <button type="submit"
+                    class="btn btn-warning w-100 mt-3">
 
-    <a href="/accounts/google/login/"
-       class="btn btn-danger w-100">
+                Login
 
-        Continue with Google
+            </button>
 
-    </a>
+        </form>
+
+        <hr class="my-4">
+
+        <a href="{% provider_login_url 'google' process='login' %}"
+           class="btn btn-outline-dark w-100 d-flex align-items-center justify-content-center gap-2">
+
+            <img
+                src="https://developers.google.com/identity/images/g-logo.png"
+                alt="Google"
+                width="20"
+                height="20"
+            >
+
+            <span>
+                Continue with Google
+            </span>
+
+        </a>
+
+    </div>
 
 </div>
 
