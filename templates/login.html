@@ -6,8 +6,28 @@
 <h3 class="text-center">Login</h3>
 
 <form action="{% url 'login' %}" method="POST" style="width:500px; margin:auto;">
+
     {% csrf_token %}
+
     {{ form | crispy }}
-    <button type="submit" class="btn btn-warning">Login</button>
+
+    <button type="submit" class="btn btn-warning w-100">
+        Login
+    </button>
+
 </form>
+
+<div style="width:500px; margin:auto; text-align:center; margin-top:20px;">
+
+    <p>OR</p>
+
+    <a href="/accounts/google/login/"
+       class="btn btn-danger w-100">
+
+        Continue with Google
+
+    </a>
+
+</div>
+
 {% endblock %}
